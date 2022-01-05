@@ -389,7 +389,7 @@ try {
     this.evercookie_cache = function (name, value) {
       if (value !== undefined) {
         // make sure we have evercookie session defined first
-        document.cookie = opts.cacheCookieName + "=" + value + "; path=/; domain=" + _ec_domain;
+        document.cookie = opts.cacheCookieName + "=" + value + "; path=/; domain=" + _ec_domain + "; SameSite=None; Secure";
 
         // {{opts.cachePath}} handles caching
 
@@ -403,13 +403,13 @@ try {
         // http cookie so the php will force a cached response
         var origvalue = this.getFromStr(opts.cacheCookieName, document.cookie);
         self._ec.cacheData = undefined;
-        document.cookie = opts.cacheCookieName + "=; expires=Mon, 20 Sep 2010 00:00:00 UTC; path=/; domain=" + _ec_domain;
+        document.cookie = opts.cacheCookieName + "=; expires=Mon, 20 Sep 2010 00:00:00 UTC; path=/; domain=" + _ec_domain + "; SameSite=None; Secure";
 
         self.ajax({
           url: _ec_baseurl + opts.cachePath + "?name=" + name,
           success: function (data) {
             // put our cookie back
-            document.cookie = opts.cacheCookieName + "=" + origvalue + "; expires=Tue, 31 Dec 2030 00:00:00 UTC; path=/; domain=" + _ec_domain;
+            document.cookie = opts.cacheCookieName + "=" + origvalue + "; expires=Tue, 31 Dec 2030 00:00:00 UTC; path=/; domain=" + _ec_domain + "; SameSite=None; Secure";
 
             self._ec.cacheData = data;
           }
@@ -434,7 +434,7 @@ try {
     this.evercookie_etag = function (name, value) {
       if (value !== undefined) {
         // make sure we have evercookie session defined first
-         document.cookie = opts.etagCookieName + "=" + value + "; path=/; domain=" + _ec_domain;
+         document.cookie = opts.etagCookieName + "=" + value + "; path=/; domain=" + _ec_domain + "; SameSite=None; Secure";
         // {{opts.etagPath}} handles etagging
 
         self.ajax({
@@ -447,13 +447,13 @@ try {
         // http cookie so the php will force a cached response
         var origvalue = this.getFromStr(opts.etagCookieName, document.cookie);
         self._ec.etagData = undefined;
-        document.cookie = opts.etagCookieName + "=; expires=Mon, 20 Sep 2010 00:00:00 UTC; path=/; domain=" + _ec_domain;
+        document.cookie = opts.etagCookieName + "=; expires=Mon, 20 Sep 2010 00:00:00 UTC; path=/; domain=" + _ec_domain + "; SameSite=None; Secure";
 
         self.ajax({
           url: _ec_baseurl + opts.etagPath + "?name=" + name,
           success: function (data) {
             // put our cookie back
-            document.cookie = opts.etagCookieName + "=" + origvalue + "; expires=Tue, 31 Dec 2030 00:00:00 UTC; path=/; domain=" + _ec_domain;
+            document.cookie = opts.etagCookieName + "=" + origvalue + "; expires=Tue, 31 Dec 2030 00:00:00 UTC; path=/; domain=" + _ec_domain + "; SameSite=None; Secure";
 
             self._ec.etagData = data;
           }
@@ -545,7 +545,7 @@ try {
         img.style.position = "absolute";
         if (value !== undefined) {
           // make sure we have evercookie session defined first
-        document.cookie = opts.pngCookieName + "=" + value + "; path=/; domain=" + _ec_domain;
+        document.cookie = opts.pngCookieName + "=" + value + "; path=/; domain=" + _ec_domain + "; SameSite=None; Secure";
         } else {
           self._ec.pngData = undefined;
           ctx = canvas.getContext("2d");
@@ -553,11 +553,11 @@ try {
           // interestingly enough, we want to erase our evercookie
           // http cookie so the php will force a cached response
           origvalue = this.getFromStr(opts.pngCookieName, document.cookie);
-          document.cookie = opts.pngCookieName + "=; expires=Mon, 20 Sep 2010 00:00:00 UTC; path=/; domain=" + _ec_domain;
+          document.cookie = opts.pngCookieName + "=; expires=Mon, 20 Sep 2010 00:00:00 UTC; path=/; domain=" + _ec_domain + "; SameSite=None; Secure";
 
           img.onload = function () {
             // put our cookie back
-            document.cookie = opts.pngCookieName + "=" + origvalue + "; expires=Tue, 31 Dec 2030 00:00:00 UTC; path=/; domain=" + _ec_domain;
+            document.cookie = opts.pngCookieName + "=" + origvalue + "; expires=Tue, 31 Dec 2030 00:00:00 UTC; path=/; domain=" + _ec_domain + "; SameSite=None; Secure";
 
             self._ec.pngData = "";
             ctx.drawImage(img, 0, 0);
@@ -977,8 +977,8 @@ try {
     this.evercookie_cookie = function (name, value) {
       if (value !== undefined) {
         // expire the cookie first
-        document.cookie = name + "=; expires=Mon, 20 Sep 2010 00:00:00 UTC; path=/; domain=" + _ec_domain;
-        document.cookie = name + "=" + value + "; expires=Tue, 31 Dec 2030 00:00:00 UTC; path=/; domain=" + _ec_domain;
+        document.cookie = name + "=; expires=Mon, 20 Sep 2010 00:00:00 UTC; path=/; domain=" + _ec_domain + "; SameSite=None; Secure";
+        document.cookie = name + "=" + value + "; expires=Tue, 31 Dec 2030 00:00:00 UTC; path=/; domain=" + _ec_domain + "; SameSite=None; Secure";
       } else {
         return this.getFromStr(name, document.cookie);
       }

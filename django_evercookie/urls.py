@@ -1,14 +1,16 @@
-try:
-    from django.conf.urls import url, patterns
-except ImportError:
-    from django.conf.urls.defaults import url, patterns
+from django.urls import path, include
+# try:
+#     from django.conf.urls import url, patterns
+# except ImportError:
+#     from django.conf.urls.defaults import url, patterns
 
 """URLs differ from standart evercookie_<storage_method> to dodge easyprivacy blocking rules"""
+from .views import *
 
-
-urlpatterns = patterns('django_evercookie.views',
-    url(r'^ecache', 'evercookie_cache', name='ecache'),
-    url(r'^epng', 'evercookie_png', name='epng'),
-    url(r'^ecetag', 'evercookie_etag', name='ecetag'),
-    url(r'^ecookie', 'evercookie_core', name='ecookie'),
-    url(r'^ecauth', 'evercookie_auth', name='ecauth'), )
+urlpatterns = [
+    path('ecache',  evercookie_cache, name='ecache'),
+    path('epng',    evercookie_png, name='epng'),
+    path('ecetag',  evercookie_etag, name='ecetag'),
+    path('ecookie', evercookie_core, name='ecookie'),
+    path('ecauth',  evercookie_auth, name='ecauth'), 
+    ]

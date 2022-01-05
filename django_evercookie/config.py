@@ -15,11 +15,11 @@ class Settings(object):
     """Django Evercookie Settings Interface"""
     __metaclass__ = Meta
 
-    def __init__(self, etag_cookie_name='etg',
+    def __init__(self, etag_cookie_name='bithash', #etg
              etag_path='ecetag',
-             png_cookie_name='png',
+             png_cookie_name='revsess', #png
              png_path='epng',
-             cache_cookie_name='cachec',
+             cache_cookie_name='cc', #cache
              cache_path='ecache',
              history='false',
              java='false',

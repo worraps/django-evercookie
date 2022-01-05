@@ -1,5 +1,5 @@
 from django import template
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from random import random
 from django_evercookie.config import settings
 register = template.Library()
@@ -13,11 +13,11 @@ def set_evercookie(ec_obj, name, value=None):
         context_dict = {"ec_obj": ec_obj, "name": name, "value": settings.cookie_value}
     else:
         context_dict = {"ec_obj": ec_obj, "name": name, "value": value}
-
-    return '''<script>
+    rval='''<script>
 var %(ec_obj)s=new evercookie();
 %(ec_obj)s.set("%(name)s", "%(value)s");
 </script>''' % context_dict
+    return rval
 
 
 
